@@ -1,28 +1,30 @@
 "use strict";
-
-const { UniqueConstraintError } = require("sequelize");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Trees", {
+    await queryInterface.createTable("Insects", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      tree: {
+      name: {
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
+      },
+      description: {
         type: Sequelize.STRING,
       },
-      location: {
+      territory: {
         type: Sequelize.STRING,
       },
-      heightFt: {
-        type: Sequelize.FLOAT,
+      fact: {
+        type: Sequelize.STRING,
+        len: [0, 240],
       },
-      groundCircumferenceFt: {
+      millimeters: {
+        allowNull: false,
         type: Sequelize.FLOAT,
       },
       createdAt: {
@@ -38,6 +40,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Trees");
+    await queryInterface.dropTable("Insects");
   },
 };
